@@ -14,7 +14,8 @@ var gulp = require('gulp');
 
 gulp.task('scripts', function() {
   var concat     = require('gulp-concat'),
-    browserify   = require('gulp-browserify'),
+    browserify   = require('browserify'),
+    transform    = require('vinyl-transform'),
     uglify       = require('gulp-uglify'),
     rev          = require('gulp-rev'),
     mergeStreams = require('merge-stream'),
@@ -22,20 +23,19 @@ gulp.task('scripts', function() {
     sourcemaps   = require('gulp-sourcemaps'),
     config       = require('../config'),
     paths        = config.paths;
-    //stripDebug   = require('gulp-strip-debug');
 
   require('del')(paths.dest.scripts);
 
   /**
    * scripts in the js root folder, entry points for browserify only!
    */
+  var browserified = transform(function(filename) {
+    return browserify(filename).bundle();
+  });
+
   var browserifiedScripts = gulp.src(paths.source.scripts, {base : path.join(process.cwd(), paths.source.root)})
     .pipe(sourcemaps.init())
-    .pipe(browserify(config.browserify))
-  /**
-   * uncomment the next line, if you want to strip out console, alert, and debugger statements
-   */
-    //.pipe(stripDebug())
+    .pipe(browserified)
     .pipe(uglify())
     .pipe(rev())
     .pipe(sourcemaps.write('./'))

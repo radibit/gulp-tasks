@@ -25,11 +25,6 @@ var config = {
       },
       root           : PUBLIC_DIR
     }
-  },
-  browserify: {
-    debug: true,
-    extensions: [],
-    bundleConfigs: []
   }
 };
 
