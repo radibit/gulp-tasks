@@ -1,0 +1,26 @@
+.behavior-view {
+  &-center {
+    &-vertical {
+      position:relative;
+      top:50%;
+      -webkit-transform:translateY(-50%);
+      -ms-transform:translateY(-50%);
+      transform:translateY(-50%);
+    }
+
+    &-horizontal {
+      text-align:center;
+      margin:0 auto;
+    }
+  }
+
+  &-left {
+    text-align:left;
+    float:left;
+  }
+
+  &-right {
+    text-align:right;
+    float:right;
+  }
+}

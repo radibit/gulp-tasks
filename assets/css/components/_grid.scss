@@ -1,0 +1,26 @@
+.row {
+  &-outer {
+    width:auto;
+    margin-left:($default-spacing / -2);
+    margin-right:($default-spacing / -2);
+
+    > .column {
+      padding:$default-spacing / 2;
+    }
+
+    &-collapse-vert > .column {
+      padding-top:0;
+      padding-bottom:0;
+    }
+  }
+
+  &-form-outer {
+    width:auto;
+    margin-left:($form-spacing / -2);
+    margin-right:($form-spacing / -2);
+
+    > .column {
+      padding:$form-spacing / 2;
+    }
+  }
+}

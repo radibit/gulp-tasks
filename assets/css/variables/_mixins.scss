@@ -1,0 +1,7 @@
+@mixin sprite-classes($spriteList, $prefix) {
+  @each$item in $spriteList {
+    .#{$prefix}-#{nth($item, 1)} {
+      @include sprite(nth($item, 2));
+    }
+  }
+}
