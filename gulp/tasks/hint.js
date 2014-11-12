@@ -10,9 +10,10 @@ var gulp = require('gulp');
 
 gulp.task('jshint', function() {
   var jshint = require('gulp-jshint'),
-    paths    = require('../config').paths.jshint;
+    paths    = require('../config').paths;
 
-  return gulp.src(paths)
+  return gulp.src(paths.jshint)
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'));
 });

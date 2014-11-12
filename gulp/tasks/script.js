@@ -12,7 +12,7 @@
 
 var gulp = require('gulp');
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['jshint'], function() {
   var concat     = require('gulp-concat'),
     browserify   = require('browserify'),
     transform    = require('vinyl-transform'),

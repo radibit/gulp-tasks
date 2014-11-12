@@ -20,11 +20,9 @@ gulp.task('watch', function() {
     runSequence('styles', 'rev', 'template');
   });
 
-  gulp.watch(paths.source.scripts, function() {
+  gulp.watch(paths.jshint, function() {
     runSequence('scripts', 'rev', 'template');
   });
-
-  gulp.watch(paths.jshint, ['jshint']);
 
   gulp.watch(paths.source.templates, ['template']);
 });
