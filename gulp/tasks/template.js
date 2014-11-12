@@ -11,11 +11,11 @@
 var gulp = require('gulp');
 
 gulp.task('template', function() {
-  var config     = require('../config'),
-    template     = require('gulp-template'),
-    minifyHTML   = require('gulp-minify-html'),
-    connect      = require('gulp-connect'),
-    path         = require('path');
+  var config    = require('../config'),
+    template    = require('gulp-template'),
+    minifyHTML  = require('gulp-minify-html'),
+    browserSync = require('browser-sync'),
+    path        = require('path');
 
   delete require.cache[path.resolve(config.paths.source.rev + 'all.json')];
   var revs = require('../../' + config.paths.source.rev + 'all.json');
@@ -31,5 +31,5 @@ gulp.task('template', function() {
       spare : false
     }))
     .pipe(gulp.dest(config.paths.dest.templates))
-    .pipe(connect.reload());
+    .pipe(browserSync.reload({ stream : true }));
 });

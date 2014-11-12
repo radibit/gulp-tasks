@@ -39,7 +39,7 @@ $ gulp
 <br />
 #### 1.5 Dev task
 
-use this command to trigger all build related gulp tasks, kick off development server on port 8080 and start file watcher for development
+use this command to trigger all build related gulp tasks, kick off development server and start file watcher for development
 
 ```
 $ gulp dev
