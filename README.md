@@ -5,20 +5,20 @@
 #### 1.1 Pre-Requirements
 
 ```
-$ npm install -g gulp
+$ sudo npm install -g gulp
 ```
 
 ```
 $ npm install
 ```
 
-<br />
+<br>
 #### 1.2 Hints
 
-##### !!do not work in the /public folder, change only files in /assets!!
-###### gulp will optimize the files and move them to /public
+##### Do not work in the /public folder, change only files in /assets!!
+###### Gulp will optimize the files and move them to /public
 
-<br />
+<br>
 #### 1.3 Build task
 
 use this command to trigger all build related gulp tasks
@@ -27,7 +27,7 @@ use this command to trigger all build related gulp tasks
 $ gulp build
 ```
 
-<br />
+<br>
 #### 1.4 Default task
 
 the default gulp will also trigger all build related tasks
@@ -36,7 +36,7 @@ the default gulp will also trigger all build related tasks
 $ gulp
 ```
 
-<br />
+<br>
 #### 1.5 Dev task
 
 use this command to trigger all build related gulp tasks, kick off development server and start file watcher for development
