@@ -1,11 +1,13 @@
 # Frontend Starter
 
+## This is a template to be used for new front-end projects.
+
 ### 1. Build process
 
 #### 1.1 Pre-Requirements
 
 ```
-$ sudo npm install -g gulp
+$ sudo npm install -g gulpjs/gulp-cli#4.0
 ```
 
 ```
@@ -15,32 +17,18 @@ $ npm install
 <br>
 #### 1.2 Hints
 
-##### Do not work in the /public folder, change only files in /assets!!
+##### Do not work in the /public folder, change only files in /assets!
 ###### Gulp will optimize the files and move them to /public
 
 <br>
-#### 1.3 Build task
+#### 1.3 Tasks
 
-use this command to trigger all build related gulp tasks
-
-```
-$ gulp build
-```
-
-<br>
-#### 1.4 Default task
-
-the default gulp will also trigger all build related tasks
+use this command to list all available tasks
 
 ```
-$ gulp
+$ gulp --tasks
 ```
 
-<br>
-#### 1.5 Dev task
+##### 1.3.1 Main tasks
 
-use this command to trigger all build related gulp tasks, kick off development server and start file watcher for development
-
-```
-$ gulp dev
-```
+use `gulp build` for production or `gulp dev` for development

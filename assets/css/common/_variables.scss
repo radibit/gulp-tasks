@@ -1,0 +1,22 @@
+$_fsDefault : 14px;
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+$_ffDefault : 'Open Sans', Helvetica, Arial, sans-serif;
+
+$_cWhite : #fff;
+$_cGray : #999;
+$_cGrayLight : #ccc;
+$_cDark : #222;
+
+$_cError : #ed5565;
+$_cWarning : #d77448;
+$_cSuccess : #a0d468;
+
+$_sNormal : 10px;
+$_sBig : 50px;
+
+$_wMax : 1140px;
+$_wSmall : 0;
+$_wMedium : 481px;
+$_wLarge : 768px;
+$_wXLarge : $_wMax;

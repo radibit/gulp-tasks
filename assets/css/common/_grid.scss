@@ -1,0 +1,59 @@
+$_gridRaster : 12;
+$_gridLayouts : (
+  small : $_wSmall,
+  medium : $_wMedium,
+  large : $_wLarge,
+  xlarge : $_wXLarge
+);
+
+.grid {
+  &__row {
+    margin:-$_sNormal;
+
+    &:after {
+      display:block;
+      content:'';
+      clear:left;
+    }
+
+    &--collapse {
+      margin:0;
+
+      .grid__column {
+        padding:0;
+      }
+    }
+  }
+
+  &__column {
+    display:block;
+    float:left;
+    padding:$_sNormal;
+    box-sizing:border-box;
+  }
+}
+
+@each $_gridLayout, $gridLayoutMinWidth in $_gridLayouts {
+  @media only screen and (min-width: #{$gridLayoutMinWidth}) {
+    @for $i from 1 through $_gridRaster {
+      .grid__#{$_gridLayout} {
+        &--#{$i} {
+          width:percentage((1 / $_gridRaster) * $i);
+        }
+
+        &--show {
+          display:inherit;
+        }
+        &--hide {
+          display:none;
+        }
+      }
+
+      @if $i != $_gridRaster and $_gridRaster % $i == 0 {
+        .grid__row--autoclear .grid__#{$_gridLayout}--#{$i}:nth-child(#{$_gridRaster / $i}n+1) {
+          clear:left;
+        }
+      }
+    }
+  }
+}

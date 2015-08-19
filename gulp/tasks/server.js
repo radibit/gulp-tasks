@@ -1,19 +1,20 @@
 'use strict';
 
-/*******************************************************************************
- * SERVER TASK
- *
- * this task will start browser-sync with connect server
- */
+var gulp = require('gulp');
 
-require('gulp').task('server', function() {
-  var browserSync = require('browser-sync'),
-    paths         = require('../config').paths;
+gulp.task('server:reload', function(cb) {
+  require('browser-sync').reload();
+  return cb();
+});
 
-  browserSync({
+gulp.task('server', function(cb) {
+  require('browser-sync')({
     server : {
-      baseDir : paths.dest.root
+      baseDir : require('../config').paths.dest
     },
-    open : false
+    notify: false,
+    open : true
   });
+
+  return cb();
 });

@@ -1,22 +1,15 @@
 'use strict';
 
-/*******************************************************************************
- * IMAGE TASK
- *
- * this task is responsible for image optimization
- *  - optimize all images in the assets folder and move them to
- *    the public folder
- *  - spriting is moved to sprite task
- */
-
-var gulp = require('gulp');
+var gulp = require('gulp'),
+  paths = require('../config').paths;
 
 gulp.task('images', function() {
   var imagemin     = require('gulp-imagemin'),
     jpegRecompress = require('imagemin-jpeg-recompress'),
-    paths          = require('../config').paths;
+    gutil          = require('gutil');
 
   return gulp.src(paths.source.images)
+    .on('error', gutil.log)
     .pipe(imagemin({
       svgoPlugins : [
         // { cleanupAttrs : false },
@@ -47,7 +40,7 @@ gulp.task('images', function() {
         { removeUnknownsAndDefaults : false },
         // { removeUnusedNS : false },
         // { removeUselessStrokeAndFill : false },
-        { removeViewBox : false },
+        { removeViewBox : false }
         // { removeXMLProcInst : false },
         // { sortAttrs : false },
         // { transformsWithOnePath : false }
@@ -56,5 +49,5 @@ gulp.task('images', function() {
         jpegRecompress({ loops : 1})
       ]
     }))
-    .pipe(gulp.dest(paths.dest.images));
+    .pipe(gulp.dest(paths.dest + 'images'));
 });

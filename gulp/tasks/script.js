@@ -1,60 +1,32 @@
 'use strict';
 
-/*******************************************************************************
- * SCRIPT TASKS
- *
- * this task is responsible for the JavaScript files
- * - delete old generated files
- * - concatenate all files
- * - hash the files
- * - write source maps
- */
+var gulp = require('gulp'),
+  paths = require('../config').paths;
 
-var gulp = require('gulp');
+gulp.task('scripts', function() {
+  var jshint = require('gulp-jshint');
 
-gulp.task('scripts', ['jshint'], function() {
-  var concat     = require('gulp-concat'),
-    browserify   = require('browserify'),
-    transform    = require('vinyl-transform'),
-    uglify       = require('gulp-uglify'),
-    rev          = require('gulp-rev'),
-    mergeStreams = require('merge-stream'),
-    path         = require('path'),
-    sourcemaps   = require('gulp-sourcemaps'),
-    config       = require('../config'),
-    paths        = config.paths;
+  gulp.src(paths.source.jshint)
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
+    // .pipe(jshint.reporter('fail'));
 
-  require('del')(paths.dest.scripts);
 
-  /**
-   * scripts in the js root folder, entry points for browserify only!
-   */
-  var browserified = transform(function(filename) {
-    return browserify(filename).bundle();
-  });
+  var
+    browserify = require('browserify'),
+    source     = require('vinyl-source-stream'),
+    buffer     = require('vinyl-buffer'),
+    uglify     = require('gulp-uglify'),
+    sourcemaps = require('gulp-sourcemaps'),
+    path       = require('path'),
+    gutil      = require('gutil');
 
-  var browserifiedScripts = gulp.src(paths.source.scripts, {base : path.join(process.cwd(), paths.source.root)})
+  return browserify({ entries : paths.source.scripts }).bundle()
+    .on('error', gutil.log)
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
     .pipe(sourcemaps.init())
-    .pipe(browserified)
     .pipe(uglify())
-    .pipe(rev())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.dest.root))
-    .pipe(rev.manifest({path: 'js.json'}))
-    .pipe(gulp.dest(paths.source.rev));
-
-  /**
-   * scripts from vendor folder, being concatenated into one revisioned file
-   */
-  var vendorScripts = gulp.src(paths.source.scripts_vendor)
-    .pipe(sourcemaps.init())
-    .pipe(concat('js/vendor.js'))
-    .pipe(uglify())
-    .pipe(rev())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.dest.root))
-    .pipe(rev.manifest({path: 'js-vendor.json'}))
-    .pipe(gulp.dest(paths.source.rev));
-
-  return mergeStreams(browserifiedScripts, vendorScripts);
+    .pipe(gulp.dest(paths.dest + 'js'));
 });

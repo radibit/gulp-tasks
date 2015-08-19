@@ -1,28 +1,20 @@
 'use strict';
 
-/*******************************************************************************
- * WATCH TASK
- *
- * kicks off the watcher for JS, CSS, HTML files
- * for easy and instant development
- *
- * @todo: use files argument to just update touched files!
- */
+var gulp  = require('gulp'),
+  paths = require('../config').paths;
 
-var gulp = require('gulp');
+gulp.task('styles:watch', function () {
+  gulp.watch(paths.source.styles, gulp.series('styles', 'server:reload'));
+});
 
-gulp.task('watch', function() {
-  var runSequence = require('run-sequence'),
-    watch         = require('gulp-watch'),
-    paths         = require('../config').paths;
+gulp.task('scripts:watch', function () {
+  gulp.watch(paths.source.scripts, gulp.series('scripts', 'server:reload'));
+});
 
-  gulp.watch([paths.source.styles, '!' + paths.dest.sprite.scss + '_sprite.scss'], function() {
-    runSequence('styles', 'rev', 'template');
-  });
+gulp.task('images:watch', function () {
+  gulp.watch(paths.source.images, gulp.series('images', 'server:reload'));
+});
 
-  gulp.watch(paths.jshint, function() {
-    runSequence('scripts', 'rev', 'template');
-  });
-
-  gulp.watch(paths.source.templates, ['template']);
+gulp.task('copy:watch', function () {
+  gulp.watch(paths.source.copy, gulp.series('copy', 'server:reload'));
 });

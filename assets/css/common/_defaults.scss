@@ -1,0 +1,14 @@
+html {
+  font-size:$_fsDefault;
+  font-family:$_ffDefault;
+  background:$_cWhite;
+  color:$_cDark;
+}
+
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+}
