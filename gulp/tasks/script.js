@@ -7,13 +7,14 @@ gulp.task('scripts', function() {
   var jshint = require('gulp-jshint');
 
   gulp.src(paths.source.jshint)
-    .pipe(jshint())
+    .pipe(jshint({ esnext : true }))
     .pipe(jshint.reporter('jshint-stylish'));
     // .pipe(jshint.reporter('fail'));
 
 
   var
     browserify = require('browserify'),
+    babelify   = require('babelify'),
     source     = require('vinyl-source-stream'),
     buffer     = require('vinyl-buffer'),
     uglify     = require('gulp-uglify'),
@@ -21,7 +22,9 @@ gulp.task('scripts', function() {
     path       = require('path'),
     gutil      = require('gutil');
 
-  return browserify({ entries : paths.source.scripts }).bundle()
+  return browserify({ entries : paths.source.scripts })
+    .transform(babelify)
+    .bundle()
     .on('error', gutil.log)
     .pipe(source('bundle.js'))
     .pipe(buffer())
