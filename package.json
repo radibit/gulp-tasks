@@ -9,7 +9,8 @@
   },
   "author": "Project A Ventures",
   "repository": "https://github.com/project-a/frontend-starter.git",
-  "dependencies": {
+  "devDependencies": {
+    "babelify": "^6.3.0",
     "browser-sync": "^2.8.2",
     "browserify": "^11.0.1",
     "del": "^1.2.1",
