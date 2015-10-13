@@ -4,7 +4,8 @@
   "description": "Frontend Starter",
   "license": "GPL-3.0",
   "scripts": {
-    "start": "gulp dev",
+    "start": "npm run gulp",
+    "gulp": "gulp",
     "test": "echo \"ERR: No test specified!\" && exit 1"
   },
   "author": "Project A Ventures",
