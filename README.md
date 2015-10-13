@@ -7,10 +7,6 @@
 #### 1.1 Pre-Requirements
 
 ```
-$ sudo npm install -g gulpjs/gulp-cli#4.0
-```
-
-```
 $ npm install
 ```
 
