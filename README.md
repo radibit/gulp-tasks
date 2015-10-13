@@ -7,10 +7,6 @@
 #### 1.1 Pre-Requirements
 
 ```
-$ sudo npm install -g gulpjs/gulp-cli#4.0
-```
-
-```
 $ npm install
 ```
 
@@ -26,9 +22,9 @@ $ npm install
 use this command to list all available tasks
 
 ```
-$ gulp --tasks
+$ npm start -- --tasks
 ```
 
 ##### 1.3.1 Main tasks
 
-use `gulp build` for production or `gulp dev` for development
+use `npm start build` for production or `npm start dev` for development
