@@ -1,9 +1,9 @@
 $_gridRaster : 12;
 $_gridLayouts : (
-  small : $_wSmall,
-  medium : $_wMedium,
-  large : $_wLarge,
-  xlarge : $_wXLarge
+  small : ($_wSmall, $_wMedium - 1px),
+  medium : ($_wMedium, $_wLarge - 1px),
+  large : ($_wLarge, $_wXLarge - 1px),
+  xlarge : ($_wXLarge)
 );
 
 .grid {
@@ -33,8 +33,8 @@ $_gridLayouts : (
   }
 }
 
-@each $_gridLayout, $gridLayoutMinWidth in $_gridLayouts {
-  @media only screen and (min-width: #{$gridLayoutMinWidth}) {
+@each $_gridLayout, $gridLayoutWidths in $_gridLayouts {
+  @media only screen and (min-width: #{nth($gridLayoutWidths, 1)}) {
     @for $i from 1 through $_gridRaster {
       .grid__#{$_gridLayout} {
         &--#{$i} {
@@ -48,7 +48,16 @@ $_gridLayouts : (
           display:none;
         }
       }
+    }
+  }
 
+  $rangeStr : '(min-width: #{nth($gridLayoutWidths, 1)})';
+  @if length($gridLayoutWidths) > 1 {
+    $rangeStr : $rangeStr + ' and (max-width: #{nth($gridLayoutWidths, 2)})';
+  }
+
+  @media only screen and #{$rangeStr} {
+    @for $i from 1 through $_gridRaster {
       @if $i != $_gridRaster and $_gridRaster % $i == 0 {
         .grid__row--autoclear .grid__#{$_gridLayout}--#{$i}:nth-child(#{$_gridRaster / $i}n+1) {
           clear:left;
