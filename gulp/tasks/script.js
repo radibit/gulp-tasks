@@ -14,7 +14,6 @@ gulp.task('scripts', function() {
 
   var
     browserify = require('browserify'),
-    babelify   = require('babelify'),
     source     = require('vinyl-source-stream'),
     buffer     = require('vinyl-buffer'),
     uglify     = require('gulp-uglify'),
@@ -23,7 +22,7 @@ gulp.task('scripts', function() {
     gutil      = require('gutil');
 
   return browserify({ entries : paths.source.scripts })
-    .transform(babelify)
+    .transform('babelify', { presets: ['es2015', 'stage-0'] })
     .bundle()
     .on('error', gutil.log)
     .pipe(source('bundle.js'))
