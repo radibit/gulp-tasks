@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 
 gulp.task('styles', function() {
   var sass     = require('gulp-sass'),
-    minifyCSS  = require('gulp-minify-css'),
+    cssnano    = require('gulp-cssnano'),
     prefix     = require('gulp-autoprefixer'),
     path       = require('path'),
     sourcemaps = require('gulp-sourcemaps');
@@ -14,7 +14,7 @@ gulp.task('styles', function() {
   return gulp.src(paths.source.styles, {base : path.join(process.cwd(), paths.source.root)})
     .pipe(sourcemaps.init())
     .pipe(sass({includePaths: ['./' + paths.source.root  + ' css']}))
-    .pipe(minifyCSS())
+    .pipe(cssnano())
     .pipe(prefix('last 1 version', '> 1%'))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.dest));
