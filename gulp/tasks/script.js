@@ -22,7 +22,6 @@ gulp.task('scripts', function() {
     gutil      = require('gutil');
 
   return browserify({ entries : paths.source.scripts })
-    .transform('babelify', { presets: ['es2015', 'stage-0'] })
     .bundle()
     .on('error', gutil.log)
     .pipe(source('bundle.js'))

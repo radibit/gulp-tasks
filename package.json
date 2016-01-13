@@ -10,6 +10,15 @@
   },
   "author": "Project A Ventures",
   "repository": "https://github.com/project-a/frontend-starter.git",
+  "browserify": {
+    "transform": [
+      [
+        "babelify", {
+          "presets" : ["es2015", "stage-0"]
+        }
+      ]
+    ]
+  },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
