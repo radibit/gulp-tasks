@@ -47,6 +47,28 @@ require('./tasks/sass')('sass', {
   watch: true
 });
 
+require('./tasks/stylus')('stylus', {
+  base: 'demo/stylus/',
+  source: ['demo/stylus/**/*.styl','!demo/stylus/**/_*.styl'],
+  dest: 'public/css',
+  targetFile: 'master.css',
+  sourcemaps: false,
+  minify: true,
+  stylusOptions: {
+    define: {
+      importTree: require('stylus-import-tree')
+    },
+    "include css": true,
+    use: [require('nib')()],
+    import: [
+      __dirname + '/demo/stylus/_mixins',
+      __dirname + '/demo/stylus/_variables'
+    ]
+  },
+  prefixOptions: {browsers: ['> 1%', 'last 1 versions'], cascade: false},
+  watch: true
+});
+
 require('./tasks/script')('scripts', {
   source: 'demo/js/**/*.js',
   entries: 'demo/js/main.js',
