@@ -22,7 +22,6 @@ var
   };
 
 module.exports = function (name, config) {
-
   gulp.task(name + ':reload', function (cb) {
     browserSync.getInstance().reload(getReloadWildCards(config));
     return cb();

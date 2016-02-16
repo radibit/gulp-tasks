@@ -67,7 +67,9 @@ require('./tasks/styleguide')('styleguide', {
     sourcePath: 'demo/templates',
     sourceExt: 'twig',
     targetExt: 'html',
-    dataExt: 'json'
+    dataExt: 'json',
+    mockFunctionsFile: 'mockFunctionsFile.js'
+
   },
   viewerApp: {
     dest: 'public/styleguide',

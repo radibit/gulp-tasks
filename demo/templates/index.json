@@ -1,4 +1,5 @@
 {
   "message": "anithing",
-  "xxxx": "another replacement"
+  "xxxx": "another replacement",
+  "aaaa": "{% include '00-atoms/00-global/index.json' %}"
 }
