@@ -5,12 +5,8 @@ var
   imagemin = require('gulp-imagemin'),
   jpegRecompress = require('imagemin-jpeg-recompress'),
   gutil = require('gutil'),
-  gulpif = require('gulp-if'),
   browserSync = require('../util/browserSync'),
-
-  isWatchEnabled = function (config) {
-    return config.watch === true;
-  },
+  featureCheck = require('../util/featureCheck'),
 
   svgoPlugins = [
     // { cleanupAttrs : false },
@@ -47,7 +43,6 @@ var
     // { transformsWithOnePath : false }
   ];
 
-
 module.exports = function (name, config) {
 
   gulp.task(name, function () {
@@ -57,11 +52,12 @@ module.exports = function (name, config) {
         svgoPlugins: config.svgoPlugins || svgoPlugins,
         use: config.reCompress ? [jpegRecompress({loops: 1})] : []
       }))
-      .pipe(gulp.dest(config.dest))
-      .pipe(gulpif(isWatchEnabled(config), browserSync.getInstance().stream()));
+      .pipe(featureCheck.ifHook(config, config.hook))
+      .pipe(featureCheck.ifDest(config, gulp.dest(config.dest)))
+      .pipe(featureCheck.ifWatch(config, browserSync.getInstance().stream()));
   });
 
-  gulp.task(name+':watch', function () {
+  gulp.task(name + ':watch', function () {
     gulp.watch(config.source, gulp.parallel(name));
   });
 

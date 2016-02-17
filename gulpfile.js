@@ -3,8 +3,6 @@
 var
   gulp = require('gulp');
 
-//require('./util/browserSync').createInstance();
-
 require('./tasks/server')('server', {
   baseDir: 'public/'
 });
@@ -26,7 +24,7 @@ require('./tasks/image')('images', {
   svgoPlugins: [
     {collapseGroups: false},
     {convertPathData: false},
-    {convertShapeToPath: false},
+    {convertShapeToPath: true},
     {moveElemsAttrsToGroup: false},
     {moveGroupAttrsToElems: false},
     {removeHiddenElems: false},
@@ -34,8 +32,10 @@ require('./tasks/image')('images', {
     {removeViewBox: false}
   ],
   reCompress: true,
-  watch: true
-});
+  watch: true,
+  hook: function(file, t) { console.log(file.path.toString()); }
+  }
+);
 
 require('./tasks/sass')('sass', {
   base: 'demo/css/',
