@@ -20,7 +20,6 @@ require('./tasks/copy')('copy', {
 require('./tasks/image')('images', {
   source: 'demo/images/**/*.{png,jpg,jpeg,gif,svg}',
   dest: 'public/images',
-  reloadTaskName: 'server:reload',
   svgoPlugins: [
     {collapseGroups: false},
     {convertPathData: false},
