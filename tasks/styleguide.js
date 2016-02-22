@@ -33,7 +33,7 @@ module.exports = function (name, config) {
   });
 
   gulp.task(name+':build', function (cb) {
-    patternguide(config);
+    patternguide(config, null, cb);
     return cb();
   });
 
