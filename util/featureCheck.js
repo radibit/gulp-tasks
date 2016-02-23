@@ -59,7 +59,6 @@ var
   },
 
   ifFlatten = function (config, cb) {
-    console.log('--------',cb)
     return (isFlatten(config) && cb) ? cb : through.obj();
   };
 
