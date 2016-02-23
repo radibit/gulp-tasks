@@ -5,8 +5,8 @@ var
   tap = require('gulp-tap'),
 
   isMinify = function (config) {
-    if (isWatch(config) === true) return false;
-    return config.minify === true;
+    if (true === isWatch(config)) return false;
+    return true === config.minify;
   },
 
   ifMinify = function (config, cb) {
@@ -14,8 +14,8 @@ var
   },
 
   isSourceMap = function (config) {
-    if (isMinify(config) === false) return false;
-    return config.sourcemaps === true;
+    if (false === isMinify(config)) return false;
+    return true === config.sourcemaps;
   },
 
   ifSourceMap = function (config, cb) {
@@ -31,7 +31,7 @@ var
   },
 
   isWatch = function (config) {
-    return config.watch === true;
+    return true === config.watch;
   },
 
   ifWatch = function (config, cb) {
@@ -52,6 +52,15 @@ var
 
   ifDest = function (config, cb) {
     return (isDest(config) && cb) ? cb : through.obj();
+  },
+
+  isFlatten = function (config) {
+    return true === config.flatten;
+  },
+
+  ifFlatten = function (config, cb) {
+    console.log('--------',cb)
+    return (isFlatten(config) && cb) ? cb : through.obj();
   };
 
 
@@ -61,3 +70,4 @@ module.exports.ifConcat = ifConcat;
 module.exports.ifWatch = ifWatch;
 module.exports.ifHook = ifHook;
 module.exports.ifDest = ifDest;
+module.exports.ifFlatten = ifFlatten;

@@ -4,6 +4,7 @@ var
   gulp = require('gulp'),
   imagemin = require('gulp-imagemin'),
   jpegRecompress = require('imagemin-jpeg-recompress'),
+  flatten = require('gulp-flatten'),
   gutil = require('gutil'),
   browserSync = require('../util/browserSync'),
   featureCheck = require('../util/featureCheck'),
@@ -53,6 +54,7 @@ module.exports = function (name, config) {
         use: config.reCompress ? [jpegRecompress({loops: 1})] : []
       }))
       .pipe(featureCheck.ifHook(config, config.hook))
+      .pipe(featureCheck.ifFlatten(config, flatten()))
       .pipe(featureCheck.ifDest(config, gulp.dest(config.dest)))
       .pipe(featureCheck.ifWatch(config, browserSync.getInstance().stream()));
   });

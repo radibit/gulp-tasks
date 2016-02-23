@@ -18,7 +18,7 @@ require('./tasks/copy')('copy', {
 });
 
 require('./tasks/image')('images', {
-  source: 'demo/images/**/*.{png,jpg,jpeg,gif,svg}',
+  source: ['demo/images/**/*.{png,jpg,jpeg,gif,svg}','demo/templates/**/*.{png,jpg,jpeg,gif,svg}'],
   dest: 'public/images',
   svgoPlugins: [
     {collapseGroups: false},
@@ -32,6 +32,7 @@ require('./tasks/image')('images', {
   ],
   reCompress: true,
   watch: true,
+  flatten: true,
   hook: function(file, t) { console.log(file.path.toString()); }
   }
 );
@@ -89,8 +90,8 @@ require('./tasks/styleguide')('styleguide', {
     sourceExt: 'twig',
     targetExt: 'html',
     dataExt: 'json',
-    mockFunctionsFile: 'mockFunctionsFile.js'
-
+    mockFunctionsFile: 'mockFunctionsFile.js',
+    engine: 'nunjucks'
   },
   viewerApp: {
     dest: 'public/styleguide',
