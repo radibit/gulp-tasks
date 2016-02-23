@@ -71,7 +71,7 @@ require('./tasks/stylus')('stylus', {
 
 require('./tasks/script')('scripts', {
   source: 'demo/js/**/*.js',
-  entries: 'demo/js/main.js',
+  entries: 'demo/js/*.js',
   dest: 'public/js',
   jshint: {
     reporter: 'jshint-stylish',
