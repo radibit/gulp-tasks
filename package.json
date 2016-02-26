@@ -2,7 +2,7 @@
   "name": "frontend-starter",
   "version": "0.0.1",
   "description": "Frontend Starter",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "scripts": {
     "start": "npm run gulp --",
     "gulp": "gulp",
