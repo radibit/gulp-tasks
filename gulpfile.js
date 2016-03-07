@@ -81,7 +81,7 @@ require('./tasks/script')('scripts', {
   },
   sourcemaps: true,
   minify: true,
-  watch: true
+  watch: false
 });
 
 require('./tasks/styleguide')('styleguide', {

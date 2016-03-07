@@ -27,14 +27,13 @@ module.exports = function (name, config) {
     return cb();
   });
 
-  gulp.task(name+':dev', function (cb) {
-    patternguide(config, browserSync.getInstance(), cb);
+  gulp.task(name+':dev', function () {
+    patternguide(config, browserSync.getInstance());
     gulp.watch(getWatchGlobString(config), gulp.parallel(name + ':reload'));
   });
 
   gulp.task(name+':build', function (cb) {
-    patternguide(config, null, cb);
-    return cb();
+    return patternguide(config, null, cb);
   });
 
 };
