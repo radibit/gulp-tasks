@@ -27,9 +27,10 @@ module.exports = function (name, config) {
     return cb();
   });
 
-  gulp.task(name+':dev', function () {
+  gulp.task(name+':dev', function (cb) {
     patternguide(config, browserSync.getInstance());
     gulp.watch(getWatchGlobString(config), gulp.parallel(name + ':reload'));
+    cb();
   });
 
   gulp.task(name+':build', function (cb) {
