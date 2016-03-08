@@ -18,7 +18,7 @@ require('./tasks/copy')('copy', {
 });
 
 require('./tasks/fonts')('fonts', {
-  source: 'demo/fonts/**/*',
+  source: 'demo/fonts/**/*.{otf,ttf,woff,woff2,svg}',
   dest: 'public/css',
   targetFile: 'fonts.css',
   watch: true
