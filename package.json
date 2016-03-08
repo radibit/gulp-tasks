@@ -41,6 +41,7 @@
     "gulp-jshint": "^2.0.0",
     "gulp-patternguide": "git+ssh://git@github.com/junomedical/treatntravel-styleguide.git",
     "gulp-sass": "^2.1.1",
+    "gulp-simplefont64": "0.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.3.0",
     "gulp-tap": "^0.1.3",

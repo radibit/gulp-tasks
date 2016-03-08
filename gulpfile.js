@@ -17,6 +17,13 @@ require('./tasks/copy')('copy', {
   watch: true
 });
 
+require('./tasks/fonts')('fonts', {
+  source: 'demo/fonts/**/*',
+  dest: 'public/css',
+  targetFile: 'fonts.css',
+  watch: true
+});
+
 require('./tasks/image')('images', {
   source: ['demo/images/**/*.{png,jpg,jpeg,gif,svg}','demo/templates/**/*.{png,jpg,jpeg,gif,svg}'],
   dest: 'public/images',
