@@ -55,7 +55,7 @@
     "stylus-import-tree": "^0.1.10",
     "through2": "^2.0.1",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
     "gulp-patternguide": "git+ssh://git@github.com/junomedical/treatntravel-styleguide.git#v0.1.0"
   }
 }
