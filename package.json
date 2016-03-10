@@ -39,7 +39,6 @@
     "gulp-flatten": "^0.2.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-jshint": "^2.0.0",
-    "gulp-patternguide": "git+ssh://git@github.com/junomedical/treatntravel-styleguide.git",
     "gulp-sass": "^2.1.1",
     "gulp-simplefont64": "git+ssh://git@github.com:junomedical/gulp-simplefont64.git",
     "gulp-sourcemaps": "^1.6.0",
@@ -57,5 +56,8 @@
     "through2": "^2.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "peerDependencies": {
+    "gulp-patternguide": "git+ssh://git@github.com/junomedical/treatntravel-styleguide.git"
   }
 }
