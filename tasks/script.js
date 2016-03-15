@@ -39,13 +39,11 @@ module.exports = function (name, config) {
           .pipe(featureCheck.ifHook(config, config.hook))
           .pipe(extReplace('.bundle.js'))
           .pipe(flatten())
-          .pipe(featureCheck.ifDest(config, gulp.dest(config.dest)))
           .pipe(featureCheck.ifWatch(config), browserSync.getInstance().stream())
           .pipe(featureCheck.ifSourceMap(config, sourcemaps.init()))
           .pipe(featureCheck.ifMinify(config, uglify()))
-          .pipe(featureCheck.ifMinify(config, extReplace('.min.js')))
           .pipe(featureCheck.ifSourceMap(config, sourcemaps.write('./')))
-          .pipe(featureCheck.ifMinify(config, gulp.dest(config.dest)));
+          .pipe(featureCheck.ifDest(config, gulp.dest(config.dest)));
       });
 
       es.merge(tasks).on('end', cb);

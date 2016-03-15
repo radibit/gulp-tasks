@@ -5,7 +5,6 @@ var
   tap = require('gulp-tap'),
 
   isMinify = function (config) {
-    if (true === isWatch(config)) return false;
     return true === config.minify;
   },
 

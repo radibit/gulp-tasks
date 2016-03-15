@@ -1,7 +1,7 @@
 {
   "name": "gulp-tasks",
-  "version": "0.1.4",
-  "description": "Frontend Starter",
+  "version": "0.1.7",
+  "description": "Gulp Tasks",
   "license": "MIT",
   "scripts": {
     "start": "npm run gulp --",
