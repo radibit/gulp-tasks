@@ -5,7 +5,7 @@ var
   tap = require('gulp-tap'),
 
   isMinify = function (config) {
-    return true === config.minify;
+    return true === config.minify || 'true' === config.minify;
   },
 
   ifMinify = function (config, cb) {
@@ -14,7 +14,7 @@ var
 
   isSourceMap = function (config) {
     if (false === isMinify(config)) return false;
-    return true === config.sourcemaps;
+    return true === config.sourcemaps || 'true' === config.sourcemaps;
   },
 
   ifSourceMap = function (config, cb) {
