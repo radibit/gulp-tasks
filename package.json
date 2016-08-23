@@ -11,7 +11,7 @@
   },
   "author": {
     "email": "stefan.lehmann@project-a.com",
-    "name": "Stefan Lehmann"
+    "name": "Project-A (Stefan Lehmann)"
   },
   "repository": {
     "type": "git",
@@ -63,6 +63,6 @@
     "through2": "^2.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "gulp-patternguide": "git+ssh://git@github.com:project-a/gulp-patternguide.git#v0.1.6"
+    "gulp-patternguide": "git+ssh://git@github.com:project-a/gulp-patternguide.git#0.1.8"
   }
 }
