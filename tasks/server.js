@@ -13,13 +13,7 @@ module.exports = function (name, config) {
   });
 
   gulp.task(name, function (cb) {
-    browserSync.getInstance().init({
-      server: {
-        baseDir: config.baseDir || 'public/'
-      },
-      notify: config.notify || false,
-      open: config.open || true
-    }, cb);
+    browserSync.getInstance().init(config, cb);
   });
 
 };
