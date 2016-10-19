@@ -44,7 +44,7 @@ function requestBranch() {
   function resolvePromise(branch) {
     deployData.isMaster = (branch === 'master');
     deployData.branch = branch;
-    deployData.version = process.env.npm_package_version
+
     if (!deployData.isMaster) {
       deployData.version = deployData.version + '-' + deployData.branch
     }
