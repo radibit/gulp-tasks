@@ -57,10 +57,6 @@ var
     return true === config.flatten;
   },
 
-  isSync = function (config) {
-    return true === config.sync;
-  },
-
   ifFlatten = function (config, cb) {
     return (isFlatten(config) && cb) ? cb : through.obj();
   };
@@ -72,5 +68,4 @@ module.exports.ifConcat = ifConcat;
 module.exports.ifWatch = ifWatch;
 module.exports.ifHook = ifHook;
 module.exports.ifDest = ifDest;
-module.exports.isSync = isSync;
 module.exports.ifFlatten = ifFlatten;
