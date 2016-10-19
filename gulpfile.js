@@ -109,10 +109,24 @@ require('./tasks/styleguide')('styleguide', {
   }
 });
 
+require('./tasks/s3deploy')('s3deploy', {
+  source: 'public/**/*'
+});
+
+
+gulp.task('build', gulp.series('clean', gulp.parallel('scripts', 'stylus')));
+gulp.task('default', gulp.series('build'));
+gulp.task('watch', gulp.parallel('stylus:watch', 'scripts:watch'));
+gulp.task('dev', gulp.series('build', 'server', 'watch'));
+
 gulp.task('build', gulp.series('clean', gulp.parallel('copy', 'scripts', 'images', 'sass')));
 gulp.task('default', gulp.series('build'));
 gulp.task('watch', gulp.parallel('sass:watch', 'scripts:watch', 'images:watch', 'copy:watch'));
 gulp.task('dev', gulp.series('build', 'server', 'watch'));
 
+
+gulp.task('deploy', gulp.series('build', 's3deploy'));
+
 gulp.task('dev:styleguide', gulp.series('build', 'styleguide:dev', 'watch'));
 gulp.task('build:styleguide', gulp.series('build', 'styleguide:build'));
+

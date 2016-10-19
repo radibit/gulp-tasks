@@ -63,6 +63,12 @@
     "through2": "^2.0.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "gulp-patternguide": "git+ssh://git@github.com:project-a/gulp-patternguide.git#0.1.9"
+    "gulp-patternguide": "git+ssh://git@github.com:project-a/gulp-patternguide.git#0.1.9",
+    "dotenv": "^2.0.0",
+    "git-tools": "^0.2.1",
+    "q": "^1.4.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-awspublish": "^3.3.0",
+    "gulp-util": "^3.0.7"
   }
 }
