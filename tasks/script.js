@@ -39,14 +39,22 @@ module.exports = function (name, config) {
           .pipe(featureCheck.ifHook(config, config.hook))
           .pipe(extReplace('.bundle.js'))
           .pipe(flatten())
-          .pipe(featureCheck.ifWatch(config), browserSync.getInstance().stream())
           .pipe(featureCheck.ifSourceMap(config, sourcemaps.init()))
           .pipe(featureCheck.ifMinify(config, uglify()))
           .pipe(featureCheck.ifSourceMap(config, sourcemaps.write('./')))
           .pipe(featureCheck.ifDest(config, gulp.dest(config.dest)));
       });
 
-      es.merge(tasks).on('end', cb);
+      es.merge(tasks).on('end', function() {
+
+          if (config.watch === true) {
+            browserSync.getInstance().reload();
+          }
+
+          if (typeof cb === 'function') {
+            cb();
+          }
+        });
     });
   });
 
