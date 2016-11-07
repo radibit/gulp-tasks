@@ -1,0 +1,14 @@
+'use strict';
+
+var
+  gulp = require('gulp'),
+  gzip = require('gulp-gzip');
+
+module.exports = function(name, config) {
+
+  gulp.task(name, function() {
+    return gulp.src(config.source)
+      .pipe(gzip())
+      .pipe(featureCheck.ifDest(config, gulp.dest(config.dest)))
+  });
+};

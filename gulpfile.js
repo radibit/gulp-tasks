@@ -1,7 +1,11 @@
 'use strict';
 
 var
-  gulp = require('gulp');
+  gulp = require('gulp'),
+  dotenv = require('dotenv'),
+  argv = require('yargs').argv;
+
+dotenv.config({silent: true});
 
 require('./tasks/server')('server', {
   baseDir: 'public/'
@@ -14,14 +18,14 @@ require('./tasks/clean')('clean', {
 require('./tasks/copy')('copy', {
   source: 'demo/copy/**/*',
   dest: 'public/',
-  watch: true
+  watch: process.argv[2] === 'dev'
 });
 
 require('./tasks/fonts')('fonts', {
   source: 'demo/fonts/**/*.{otf,ttf,woff,woff2,svg}',
   dest: 'public/css',
   targetFile: 'fonts.css',
-  watch: true
+  watch: process.argv[2] === 'dev'
 });
 
 require('./tasks/image')('images', {
@@ -38,9 +42,9 @@ require('./tasks/image')('images', {
     {removeViewBox: false}
   ],
   reCompress: true,
-  watch: true,
   flatten: true,
-  hook: function(file, t) { console.log(file.path.toString()); }
+  hook: function(file, t) { console.log(file.path.toString()); },
+  watch: process.argv[2] === 'dev'
   }
 );
 
@@ -48,10 +52,10 @@ require('./tasks/sass')('sass', {
   base: 'demo/css/',
   source: 'demo/css/**/*.{sass,scss}',
   dest: 'public/css',
-  sourcemaps: false,
-  minify: true,
+  sourcemaps: argv.minify || false,
+  minify: argv.minify || false,
   prefixOptions: {browsers: ['> 1%', 'last 1 versions'], cascade: false},
-  watch: true
+  watch: process.argv[2] === 'dev'
 });
 
 require('./tasks/stylus')('stylus', {
@@ -59,8 +63,8 @@ require('./tasks/stylus')('stylus', {
   source: ['demo/stylus/**/*.styl','!demo/stylus/**/_*.styl'],
   dest: 'public/css',
   targetFile: 'master.css',
-  sourcemaps: false,
-  minify: true,
+  sourcemaps: argv.minify || false,
+  minify: argv.minify || false,
   stylusOptions: {
     define: {
       importTree: require('stylus-import-tree')
@@ -73,7 +77,7 @@ require('./tasks/stylus')('stylus', {
     ]
   },
   prefixOptions: {browsers: ['> 1%', 'last 1 versions'], cascade: false},
-  watch: true
+  watch: process.argv[2] === 'dev'
 });
 
 require('./tasks/script')('scripts', {
@@ -86,9 +90,9 @@ require('./tasks/script')('scripts', {
       esnext: true
     }
   },
-  sourcemaps: true,
-  minify: true,
-  watch: false
+  sourcemaps: argv.minify || false,
+  minify: argv.minify || false,
+  watch: process.argv[2] === 'dev'
 });
 
 require('./tasks/styleguide')('styleguide', {
@@ -109,6 +113,13 @@ require('./tasks/styleguide')('styleguide', {
   }
 });
 
+
+require('./tasks/gzip')('gzip', {
+  source: ['public/**/*.js', 'public/**/*.css'],
+  dest: 'public'
+});
+
+
 require('./tasks/s3deploy')('s3deploy', {
   source: 'public/**/*'
 });
@@ -125,7 +136,7 @@ gulp.task('watch', gulp.parallel('sass:watch', 'scripts:watch', 'images:watch', 
 gulp.task('dev', gulp.series('build', 'server', 'watch'));
 
 
-gulp.task('deploy', gulp.series('build', 's3deploy'));
+gulp.task('deploy', gulp.series('build', 'gzip', 's3deploy'));
 
 gulp.task('dev:styleguide', gulp.series('build', 'styleguide:dev', 'watch'));
 gulp.task('build:styleguide', gulp.series('build', 'styleguide:build'));
