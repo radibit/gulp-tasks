@@ -2,6 +2,7 @@
 
 var
   gulp = require('gulp'),
+  plumber = require('gulp-plumber'),
   imagemin = require('gulp-imagemin'),
   jpegRecompress = require('imagemin-jpeg-recompress'),
   flatten = require('gulp-flatten'),
@@ -48,7 +49,7 @@ module.exports = function (name, config) {
 
   gulp.task(name, function () {
     return gulp.src(config.source)
-      .on('error', gutil.log)
+      .pipe(featureCheck.ifWatch(config, plumber()))
       .pipe(imagemin({
         svgoPlugins: config.svgoPlugins || svgoPlugins,
         use: config.reCompress ? [jpegRecompress({loops: 1})] : []

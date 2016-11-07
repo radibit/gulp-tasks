@@ -2,6 +2,7 @@
 
 var
   gulp = require('gulp'),
+  plumber = require('gulp-plumber'),
   stylus = require('gulp-stylus'),
   concat = require('gulp-concat'),
   cssnano = require('gulp-cssnano'),
@@ -16,6 +17,7 @@ module.exports = function (name, config) {
   gulp.task(name, function () {
 
     return gulp.src(config.source, {base: config.base})
+      .pipe(featureCheck.ifWatch(config, plumber()))
       .pipe(featureCheck.ifSourceMap(config, sourcemaps.init()))
       .pipe(stylus(config.stylusOptions || {}))
       .pipe(featureCheck.ifConcat(config, concat(config.targetFile)))

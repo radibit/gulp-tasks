@@ -21,11 +21,12 @@ module.exports = function (name, config) {
 
   gulp.task(name, function (cb) {
 
-    gulp.src(config.source)
-      .pipe(jshint(config.jshint.options || {esnext: true}))
-      .pipe(jshint.reporter(config.jshint.reporter || 'jshint-stylish'));
-    // .pipe(jshint.reporter('fail'));
-
+    if (config.jshint !== false) {
+      gulp.src(config.source)
+        .pipe(jshint(config.jshint.options || {esnext: true}))
+        .pipe(jshint.reporter(config.jshint.reporter || 'jshint-stylish'));
+      // .pipe(jshint.reporter('fail'));
+    }
     glob(config.entries, function (err, files) {
       if (err) done(err);
 

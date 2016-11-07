@@ -2,6 +2,7 @@
 
 var
   gulp = require('gulp'),
+  plumber = require('gulp-plumber'),
   font64 = require('gulp-simplefont64'),
   concat = require('gulp-concat'),
   browserSync = require('../util/browserSync'),
@@ -11,6 +12,7 @@ module.exports = function(name, config) {
 
   gulp.task(name, function() {
     return gulp.src(config.source)
+      .pipe(featureCheck.ifWatch(config, plumber()))
       .pipe(font64())
       .pipe(featureCheck.ifConcat(config, concat(config.targetFile)))
       .pipe(featureCheck.ifDest(config, gulp.dest(config.dest)))

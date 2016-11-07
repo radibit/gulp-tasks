@@ -2,6 +2,7 @@
 
 var
   gulp = require('gulp'),
+  plumber = require('gulp-plumber'),
   sass = require('gulp-sass'),
   cssnano = require('gulp-cssnano'),
   prefix = require('gulp-autoprefixer'),
@@ -15,6 +16,7 @@ module.exports = function (name, config) {
   gulp.task(name, function () {
 
     return gulp.src(config.source, {base: config.base})
+      .pipe(featureCheck.ifWatch(config, plumber()))
       .pipe(featureCheck.ifSourceMap(config, sourcemaps.init()))
       .pipe(sass(config.sassOptions || {includePaths: [config.base]}))
       .pipe(prefix(config.prefixOptions || {browsers: ['> 1%', 'last 1 versions'], cascade: false}))

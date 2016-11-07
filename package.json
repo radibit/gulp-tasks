@@ -46,6 +46,7 @@
     "gulp-flatten": "^0.2.0",
     "gulp-imagemin": "^2.4.0",
     "gulp-jshint": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-sass": "^2.1.1",
     "gulp-simplefont64": "https://github.com/junomedical/gulp-simplefont64#7d5d8bd83172596f98501c24083cb4445589de97",
     "gulp-sourcemaps": "^1.6.0",
