@@ -2,7 +2,8 @@
 
 var
   gulp = require('gulp'),
-  gzip = require('gulp-gzip');
+  gzip = require('gulp-gzip'),
+  featureCheck = require('../util/featureCheck');
 
 module.exports = function(name, config) {
 
